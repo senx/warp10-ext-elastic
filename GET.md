@@ -47,7 +47,7 @@ Example
 
 ## The MULTI GET function
 
-The multi get function function in the same way than the GET function for the fourth first parameters. 
+The multi get function can be used in the same way than the GET function for the fourth first parameters. 
 
 ```
 // The param map to connect to The Elastic cluster

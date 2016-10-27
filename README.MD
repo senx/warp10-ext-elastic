@@ -12,13 +12,18 @@ gradle shadowJar
 
 ## Warp 10 config
 
-Add in warp10.conf: the ExtensionElastic class to warpscript.extensions.
+Add in warp10.conf: the ExtensionElastic class to warpscript.extensions, and a MAXTIMEOUT before ending a request on elasticsearch.
 
 ```
 //
 // Comma separated list of WarpScriptExtension classes to instantiate to modify the defined WarpScript functions
 //
 warpscript.extensions = io.warp10.script.elastic.ExtensionElastic
+
+//
+// Add a max timeout properties
+// NO_TIMEOUT set to no timeout
+warpscript.extension.elastic.maxtimeout = 1000ms
 ```
 
 Add the generated jar to your Warp10 platform classpath.

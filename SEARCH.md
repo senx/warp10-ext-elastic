@@ -78,9 +78,9 @@ The second example shows how to use every parameters of the query settings map. 
 	// Types list (type must be string) to apply the search (default: all)
 	'types' [ 'account' ]
 	
-	// Add a timeout (Defaults to no timeout, type must be a String)
-	// 'timeout' 'NO_TIMEOUT' set to no timeout
-	'timeout' '1000ms'
+	// Add a timeout (Defaults to MAXTIMEOUT set in config file, type must be a String)
+	// Timeout value must be inferior to MAXTIMEOUT
+	'timeout' '100ms'
 	
 	// Result starting from (default: 0, type must be Long)
 	'from' 1

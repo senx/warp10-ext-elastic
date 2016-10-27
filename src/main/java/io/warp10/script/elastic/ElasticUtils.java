@@ -16,6 +16,12 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import io.warp10.script.WarpScriptException;
 
 public final class ElasticUtils {
+  
+
+  public static final String MAX_TIMEOUT_CONF = "warpscript.extension.elastic.maxtimeout";
+
+  public static String MAX_TIMEOUT = "NO_TIMEOUT";
+  
   private static TransportClient client = null;
   
   public static boolean hasClient() {

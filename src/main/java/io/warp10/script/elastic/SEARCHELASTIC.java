@@ -284,6 +284,19 @@ public class SEARCHELASTIC extends NamedWarpScriptFunction implements WarpScript
       if (! (querySettings.get("timeout") instanceof String)) {
         throw new WarpScriptException("Key timeout in querry settings must be of type String.");
       }
+      
+      //
+      // Test Timeout to verify that the one choosen by the user is inferior to the platform one
+      //
+      if (!ElasticUtils.MAX_TIMEOUT.equals("NO_TIMEOUT")) {
+        TimeValue maxTs = TimeValue.parseTimeValue(ElasticUtils.MAX_TIMEOUT, null, "MAXTIMEOUT");
+        TimeValue ts = TimeValue.parseTimeValue((String) querySettings.get("timeout"), null, "timeout");
+        if (null != maxTs && null != ts) {
+          if (ts.nanos() > maxTs.nanos()) {
+            throw new WarpScriptException("Key timeout in querry settings must be inferior to MAXTIMEOUT: " + ElasticUtils.MAX_TIMEOUT + ".");
+          }
+        }
+      }
     }
     
     //
@@ -332,6 +345,10 @@ public class SEARCHELASTIC extends NamedWarpScriptFunction implements WarpScript
     List<String> types = new ArrayList<>();
     boolean all = false;
     TimeValue ts = null;
+    
+    if (!ElasticUtils.MAX_TIMEOUT.equals("NO_TIMEOUT")) {
+      ts = TimeValue.parseTimeValue(ElasticUtils.MAX_TIMEOUT, null, "MAXTIMEOUT");
+    }
     
     //
     // Set user value instead of default ones

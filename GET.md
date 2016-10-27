@@ -38,7 +38,7 @@ This function can be used to GET a single point from elasticsearch.
 GETELASTIC
 ```
 
-This will leave on the map a WarpScript Map containing all the attributes stored in Elastic search
+This will leave on the WarpScript stack a Map containing all the attributes stored in Elastic search
 
 Example
 ```

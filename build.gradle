@@ -11,6 +11,7 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'eclipse'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -68,7 +69,7 @@ dependencies {
 	compile group: 'io.netty', name: 'netty-all', version: '4.1.5.Final'
     compile 'org.elasticsearch:elasticsearch:5.0.0-rc1'
     compile 'org.elasticsearch.client:transport:5.0.0-rc1'
-	provided 'io.warp10:warpscript:1.0.17'
+    provided 'io.warp10:warpscript:1.2.4'
 	
     // Declare the dependency for your favorite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
@@ -83,6 +84,8 @@ sourceSets {
         compileClasspath = compileClasspath + configurations.provided
     }
 }
+
+eclipse.classpath.plusConfigurations += [configurations.provided]  // Eclipse users only
 
 shadowJar {
     classifier = ''
